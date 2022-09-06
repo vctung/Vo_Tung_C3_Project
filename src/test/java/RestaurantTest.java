@@ -65,9 +65,17 @@ class RestaurantTest {
         List<String> itemsSelection = new ArrayList<>();
         itemsSelection.add("Vegetable lasagne");
         itemsSelection.add("Sizzling brownie");
+
         assertEquals(588, restaurant.totalCost(itemsSelection));
     }
 
+    @Test
+    public void select_menu_item_return_total_cost_failing() {
+        List<String> itemsSelection = new ArrayList<>();
+        itemsSelection.add("Vegetable lasagne");
+        itemsSelection.add("Sizzling brownie");
 
+        assertFalse(600 ==  restaurant.totalCost(itemsSelection));
+    }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
