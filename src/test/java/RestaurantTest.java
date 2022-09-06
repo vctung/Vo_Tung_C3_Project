@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,8 +15,8 @@ class RestaurantTest {
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
         restaurant = new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
-        restaurant.addToMenu("Sweet corn soup",119);
-        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Vegetable lasagne",269);
+        restaurant.addToMenu("Sizzling brownie", 319);
     }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -57,5 +59,15 @@ class RestaurantTest {
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
     }
+
+    @Test
+    public void select_menu_item_return_total_cost() {
+        List<String> itemsSelection = new ArrayList<>();
+        itemsSelection.add("Vegetable lasagne");
+        itemsSelection.add("Sizzling brownie");
+        assertEquals(588, restaurant.totalCost(itemsSelection));
+    }
+
+
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }

@@ -17,6 +17,19 @@ public class Restaurant {
         this.closingTime = closingTime;
     }
 
+    public int totalCost(List<String> itemName){
+        int total = 0;
+        for (int i = 0; i < itemName.size(); i++) {
+            for (int j = 0; j < menu.size(); j++){
+                if(menu.get(j).getName().equals(itemName.get(i))){
+                    total += menu.get(j).getPrice();
+                }
+
+            }
+        }
+        return total;
+    }
+
     public boolean isRestaurantOpen() {
         if (!this.getCurrentTime().isAfter(this.closingTime)){
             return  true;
